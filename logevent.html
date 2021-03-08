@@ -17,17 +17,19 @@
             <div class="font-bold text-3xl">Log a trigger event</div>
 
             <div>
-                <label for="event-date">Date of event</label>
+                <label for="event-date" class="font-bold">Date of event</label>
                 <input class="border-2 border-blue-500" type="date" id="event-date" name="eventDate">
             </div>
         
-            <div>
-                <label for="event-description">Describe what happened</label><br>
-                <input class="border-2 border-blue-500" style="height:100px; width:500px" type="text" id="event-description" name="eventDescription">
+            <div class="render">
+                <label for="event-description" class="font-bold">Describe what happened</label><br>
+                <textarea rows="6" cols="50" class="border-2 border-blue-500 resize" type="text" id="event-description" name="eventDescription"></textarea>
+
+                <!-- <input class="border-2 border-blue-500" style="height:100px; width:500px" type="text" id="event-description" name="eventDescription"> -->
             </div>
 
             <div>
-                <label>How did you feel?</label><br>
+                <label class="font-bold">How did you feel?</label><br>
 
                 <div class="space-y-2">
                     <input type="checkbox" id="feelings-happy" name="feelings-happy">
@@ -48,7 +50,7 @@
                 </div>
             </div>
 
-            <button>Log event</button>
+            <button class="font-bold">Log event</button>
 
         </div>
 
