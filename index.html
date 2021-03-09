@@ -4,14 +4,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Final</title>
+  <title>bekome | Home</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
 </head>
 
-<body>
-  <div class="sign-in-or-sign-out"></div>
- 
+<body class = "bg-white">
+
+  <div class="mt:pt-16 p-8">
+    <div class="flex">
+        <h1 class="w-1/2 font-bold text-2xl">
+        <a href="index.html">
+            <span class="text-blue-400">bekome</span>
+            <span><em>your best self.</em></span>
+        </a>
+        </h1>
+
+    <div class="w-1/2 sign-in-or-sign-out pt-4 px-16 text-black text-right">
+    </div>
+    </div>
+
+  </div>
+
+  <div class="flex border-blue-400 bg-blue-100 p-4">
+  </div>
+  
+  <!-- <button id="my-mood" class="w-1/4 mt:pt-16">My Moods
+    JavaScript puts stuff here -->
+  <!-- </button> -->
+
+  <!-- <button id="my-triggers" class = "w-1/4 mt:pt-16"> My Triggers
+    JavaScript puts stuff here -->
+  <!-- </button> -->
+
+  <div class = "md:flex">
+    <button onclick="location.href='logmoods.html'" type="button" class="my-moods md:w-1/2 mt-8 text-center text-yellow-600 text-xl block font-bold">My Moods</button>
+    <button onclick="location.href='logevent.html'" type="button" class="my-triggers md:w-1/2 mt-8 text-center text-yellow-600 text-xl block font-bold">My Trigger Events</button>
+  </div>
+
+
   <!-- Put the Firebase config here -->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
@@ -21,7 +52,14 @@
 
   <script>
     // Your web app's Firebase configuration
-    var firebaseConfig = {} // replace
+    var firebaseConfig = {
+    apiKey: "AIzaSyB5PU2fG0JwIoGe6uaolANAl3elhmji_0Q",
+    authDomain: "kiei-final-4aaa6.firebaseapp.com",
+    projectId: "kiei-final-4aaa6",
+    storageBucket: "kiei-final-4aaa6.appspot.com",
+    messagingSenderId: "687734579914",
+    appId: "1:687734579914:web:ace74c6c9344a5cfe90a33"
+    }; 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
