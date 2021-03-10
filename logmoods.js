@@ -1,3 +1,12 @@
+// Step 1: On page Load, check if TODAY'S document is available in firebase in the moods collection
+    // Step 1a: If document is available, fetch values against each icon (0 or 1) and populate the 'Log Today's mood' section
+    // Step 1b: If document is unavailable, do nothing (ensure all icons are set to 0 by default)
+// Step 2: On page Load, loop through the moods collection and populate the dates + moods in the 'Past Moods' section
+// Step 3: If user selects a mood icon in 'Today's mood', change that to 'selected' icon and reset the others
+// Step 4: If user clicks on the 'Log mood' button, update the moods collection in firebase with the updated values for each icon (0 or 1)
+// 2 Lambda functions - one for read and one for write
+
+
 window.addEventListener('DOMContentLoaded',function() {
 
     console.log('loaded')
