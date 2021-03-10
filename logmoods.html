@@ -42,54 +42,55 @@
                 <input class="border-2 border-blue-500" type="date" id="event-date" name="eventDate">
             </div> -->
         
-            <div class="render">
-                <label class="font-bold">Log new mood</label><br>
+            <div>
+                <label class="font-bold">Log today's mood</label><br>
             </div>
 
             <div class="mood flex justify-left space-x-8 border-blue-400">
-                <img src="../finalproject-ankur/icons/1unselected.svg" id="icon1">
-                <img src="../finalproject-ankur/icons/2unselected.svg" id="icon2">
-                <img src="../finalproject-ankur/icons/3unselected.svg" id="icon3">
-                <img src="../finalproject-ankur/icons/4unselected.svg" id="icon4">
-                <img src="../finalproject-ankur/icons/5unselected.svg" id="icon5">
+                <img src="../final/assets/icons/1unselected.svg" id="icon1">
+                <img src="../final/assets/icons/2unselected.svg" id="icon2">
+                <img src="../final/assets/icons/3unselected.svg" id="icon3">
+                <img src="../final/assets/icons/4unselected.svg" id="icon4">
+                <img src="../final/assets/icons/5unselected.svg" id="icon5">
             </div>
 
-            <button class="mood-log font-bold border-2 border-blue-400">Log mood</button>
+            <button class="log-mood font-bold bg-blue-400 border-4 rounded border-blue-400">Log mood</button>
 
     </form>
 
-    <div class="render">
+    <div>
         <label class="font-bold">Past moods</label><br>
     </div>
 
     <!-- HARD CODED TEXT - NEEDS TO BE REPLACED WITH FIREBASE FETCH -->
-    <div class="flex py-1 text-xl">
-        <div> 03/10/2021 </div>
-        <img src="../finalproject-ankur/icons/1unselected.svg" id="icon1">
-        <img src="../finalproject-ankur/icons/2selected.svg" id="icon2">
-        <img src="../finalproject-ankur/icons/3unselected.svg" id="icon3">
-        <img src="../finalproject-ankur/icons/4unselected.svg" id="icon4">
-        <img src="../finalproject-ankur/icons/5unselected.svg" id="icon5">
+    <div class="past-moods">
+        <div class="flex py-1 text-xl">
+            <div> 03/10/2021 </div>
+            <img src="../final/assets/icons/1unselected.svg">
+            <img src="../final/assets/icons/2selected.svg">
+            <img src="../final/assets/icons/3unselected.svg">
+            <img src="../final/assets/icons/4unselected.svg">
+            <img src="../final/assets/icons/5unselected.svg">
+        </div>
+        <div class="flex py-1 text-xl">
+            <div> 03/09/2021 </div>
+            <img src="../final/assets/icons/1unselected.svg">
+            <img src="../final/assets/icons/2unselected.svg">
+            <img src="../final/assets/icons/3unselected.svg">
+            <img src="../final/assets/icons/4unselected.svg">
+            <img src="../final/assets/icons/5selected.svg">
+        </div>
+        <div class="flex py-1 text-xl">
+            <div> 03/07/2021 </div>
+            <img src="../final/assets/icons/1selected.svg">
+            <img src="../final/assets/icons/2unselected.svg">
+            <img src="../final/assets/icons/3unselected.svg">
+            <img src="../final/assets/icons/4unselected.svg">
+            <img src="../final/assets/icons/5unselected.svg">
+        </div>
     </div>
-    <div class="flex py-1 text-xl">
-        <div> 03/09/2021 </div>
-        <img src="../finalproject-ankur/icons/1unselected.svg" id="icon1">
-        <img src="../finalproject-ankur/icons/2unselected.svg" id="icon2">
-        <img src="../finalproject-ankur/icons/3unselected.svg" id="icon3">
-        <img src="../finalproject-ankur/icons/4unselected.svg" id="icon4">
-        <img src="../finalproject-ankur/icons/5selected.svg" id="icon5">
-    </div>
-    <div class="flex py-1 text-xl">
-        <div> 03/07/2021 </div>
-        <img src="../finalproject-ankur/icons/1selected.svg" id="icon1">
-        <img src="../finalproject-ankur/icons/2unselected.svg" id="icon2">
-        <img src="../finalproject-ankur/icons/3unselected.svg" id="icon3">
-        <img src="../finalproject-ankur/icons/4unselected.svg" id="icon4">
-        <img src="../finalproject-ankur/icons/5unselected.svg" id="icon5">
-    </div>
-
 </div>
 
-
+<script src="logmoods.js"></script>
 </body>
 </html>
