@@ -20,34 +20,36 @@
         </a>
         </h1>
 
-    <div class="w-1/2 sign-in-or-sign-out pt-4 px-16 text-black text-right">
+        <div class="w-1/2 sign-in-or-sign-out pt-4 px-16 text-black text-right">
+        </div>
     </div>
-    </div>
-
   </div>
 
   <div class="flex border-blue-400 bg-blue-100 p-4">
   </div>
   
-  <!-- <button id="my-mood" class="w-1/4 mt:pt-16">My Moods
-    JavaScript puts stuff here -->
-  <!-- </button> -->
-
-  <!-- <button id="my-triggers" class = "w-1/4 mt:pt-16"> My Triggers
-    JavaScript puts stuff here -->
-  <!-- </button> -->
-
-  <div class = "md:flex">
-    <button onclick="location.href='logmoods.html'" type="button" class="my-moods md:w-1/2 mt-8 text-center text-white text-xl block font-bold block bg-blue-300 mt-4 ml-16 mr-16 px-4 py-8 rounded">My Moods</button>
-    <button onclick="location.href='myTriggers.html'" type="button" class="my-triggers md:w-1/2 mt-8 text-center text-white text-xl block font-bold block bg-blue-300 mt-4 ml-16 mr-16 px-4 py-8 rounded">My Trigger Events</button>
+  <div class="myTriggerHeader font-bold">My Triggers | 
+      <button type="button" class="rangeSevenTriggers">7 Days</button> |
+      <button type="button" class="rangeThirtyDayTriggers">30 Days</button> | 
+      <button type="button" class="rangeNinetyDayTriggers">90 Days</button>
+      <div class = "addTriggerButton">
+        <a href="">Add New Trigger</a>
+      </div>
+      <div class="myTriggers">
+      </div>
   </div>
-
 
   <!-- Put the Firebase config here -->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
-  <!-- Firebase Auth -->
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+
+  <!-- FirebaseUI Auth -->
+  <!-- https://firebaseopensource.com/projects/firebase/firebaseui-web/ -->
   <script src="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.js"></script>
 
   <script>
@@ -63,7 +65,7 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="index.js"></script>
+  <script src="myTriggers.js"></script>
 </body>
 
 </html>
