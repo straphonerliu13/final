@@ -33,8 +33,10 @@ exports.handler = async function(event) {
             emotion = "Happy"
         } else if (trigger.triggerSad){
             emotion = "Sad"
-        } else {
+        } else if (trigger.triggerShame) {
             emotion = "Shame"
+        } else {
+            emotion = trigger.triggerOther
         }
 
         triggerData.push({
