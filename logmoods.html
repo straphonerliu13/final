@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bekome | My Trigger Events</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <div class="mt:pt-16 p-8">
+        <div class="flex">
+            <h1 class="w-1/2 font-bold text-2xl">
+            <a href="index.html">
+                <span class="text-blue-400">bekome</span>
+                <span><em>your best self.</em></span>
+            </a>
+            </h1>
+    
+        <div class="w-1/2 sign-in-or-sign-out pt-4 px-16 text-black text-right">
+        </div>
+        </div>
+    
+      </div>
+    
+      <div class="flex border-blue-400 bg-blue-100 p-4">
+      </div>
+
+    <!-- Why doesn't the "Hi, Name!" and Sign Out button appear here?-->
+    
+    <form>
+        <div class="flex-auto space-x-5 space-y-4">
+            
+            <!-- UPDATE BACK LINK TO HOMEPAGE IF CHANGES FROM index.html -->
+            <button onclick="location.href='index.html'" type="button" class="block font-bold mt-8 ml-5">Back</button>
+            
+            <div class="font-bold text-yellow-600 text-3xl">My Moods</div>
+
+            <!-- <div>
+                <label for="event-date" class="font-bold">Date of event</label>
+                <input class="border-2 border-blue-500" type="date" id="event-date" name="eventDate">
+            </div> -->
+        
+            <div class="render">
+                <label class="font-bold">Log new mood</label><br>
+            </div>
+
+            <div class="mood flex justify-left space-x-8 border-blue-400">
+                <img src="../finalproject-ankur/icons/1unselected.svg" id="icon1">
+                <img src="../finalproject-ankur/icons/2unselected.svg" id="icon2">
+                <img src="../finalproject-ankur/icons/3unselected.svg" id="icon3">
+                <img src="../finalproject-ankur/icons/4unselected.svg" id="icon4">
+                <img src="../finalproject-ankur/icons/5unselected.svg" id="icon5">
+            </div>
+
+            <button class="mood-log font-bold border-2 border-blue-400">Log mood</button>
+
+    </form>
+
+    <div class="render">
+        <label class="font-bold">Past moods</label><br>
+    </div>
+
+    <!-- HARD CODED TEXT - NEEDS TO BE REPLACED WITH FIREBASE FETCH -->
+    <div class="flex py-1 text-xl">
+        <div> 03/10/2021 </div>
+        <img src="../finalproject-ankur/icons/1unselected.svg" id="icon1">
+        <img src="../finalproject-ankur/icons/2selected.svg" id="icon2">
+        <img src="../finalproject-ankur/icons/3unselected.svg" id="icon3">
+        <img src="../finalproject-ankur/icons/4unselected.svg" id="icon4">
+        <img src="../finalproject-ankur/icons/5unselected.svg" id="icon5">
+    </div>
+    <div class="flex py-1 text-xl">
+        <div> 03/09/2021 </div>
+        <img src="../finalproject-ankur/icons/1unselected.svg" id="icon1">
+        <img src="../finalproject-ankur/icons/2unselected.svg" id="icon2">
+        <img src="../finalproject-ankur/icons/3unselected.svg" id="icon3">
+        <img src="../finalproject-ankur/icons/4unselected.svg" id="icon4">
+        <img src="../finalproject-ankur/icons/5selected.svg" id="icon5">
+    </div>
+    <div class="flex py-1 text-xl">
+        <div> 03/07/2021 </div>
+        <img src="../finalproject-ankur/icons/1selected.svg" id="icon1">
+        <img src="../finalproject-ankur/icons/2unselected.svg" id="icon2">
+        <img src="../finalproject-ankur/icons/3unselected.svg" id="icon3">
+        <img src="../finalproject-ankur/icons/4unselected.svg" id="icon4">
+        <img src="../finalproject-ankur/icons/5unselected.svg" id="icon5">
+    </div>
+
+</div>
+
+
+</body>
+</html>
