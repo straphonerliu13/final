@@ -129,6 +129,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         <div class="${trigger.id}">
           <span class="date">${trigger.month}/${trigger.date}/${trigger.year} | </span>
           <span class="trigger">${trigger.emotion}</span>
+          <p class="ml-8 font-normal">${trigger.detail}</p>
         </div>
       `)
     }
