@@ -5,7 +5,8 @@
   "scripts": {},
   "author": "",
   "dependencies": {
+    "chart.js": "^2.9.4",
     "firebase": "^8.2.0",
-    "netlify-cli": "^3.10.7"
+    "netlify-cli": "^3.10.9"
   }
 }
