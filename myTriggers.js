@@ -118,8 +118,17 @@ firebase.auth().onAuthStateChanged(async function(user) {
           title: {
             display: true,
             text: 'My Trigger History',
-            fontSize: 36
-          }
+            fontSize: 28,
+            position: 'bottom'
+          },
+          scales: {
+            yAxes: [{
+                ticks: {
+                    display: true,
+                    stepSize: 1
+                }
+            }]
+        }
         }
     });
   }
