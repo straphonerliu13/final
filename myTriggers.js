@@ -12,7 +12,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
     let response = await fetch( `/.netlify/functions/get_triggers?range=90`)
     let triggers = await response.json()
-    
+    let chartData = triggers[triggers.length-1]
     renderTriggers(triggers)
 
   document.querySelector('.sign-in-or-sign-out').insertAdjacentHTML('beforebegin',`
@@ -52,6 +52,26 @@ firebase.auth().onAuthStateChanged(async function(user) {
     let triggers = await response.json()
     renderTriggers(triggers)
   })
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ['Anxious', 'Guilty', 'Happy', 'Sad', 'Shame', 'Other'],
+        datasets: [{
+            label: 'My Trigger History',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [chartData.anxCount, chartData.guiltCount, chartData.happyCount, chartData.sadCount, chartData.shameCount, chartData.otherCount]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
 
   } else {
     // Signed out

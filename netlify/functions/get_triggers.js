@@ -15,6 +15,14 @@ exports.handler = async function(event) {
                              .get()
     let triggers = triggerQuery.docs                               
 
+    //Data for chart
+    let anxCount = 0
+    let guiltCount = 0
+    let happyCount = 0
+    let sadCount = 0
+    let shameCount = 0
+    let otherCount = 0
+
     for(let i = 0; i < triggers.length; i++){
         let id = triggers[i].id
         let trigger = triggers[i].data()
@@ -25,18 +33,25 @@ exports.handler = async function(event) {
         let day = date.getDate()
         let detail = trigger.triggerDetail
         let emotion = ""
+
         if(trigger.triggerAnxious){
             emotion = "Anxious"
+            anxCount++
         } else if (trigger.triggerGuilt) {
-            emotion = "Guilt"
+            emotion = "Guilty"
+            guiltCount++
         } else if (trigger.triggerHappy){
             emotion = "Happy"
+            happyCount++
         } else if (trigger.triggerSad){
             emotion = "Sad"
+            sadCount++
         } else if (trigger.triggerShame) {
             emotion = "Shame"
+            shameCount++
         } else {
             emotion = trigger.triggerOther
+            otherCount++
         }
 
         triggerData.push({
@@ -45,7 +60,13 @@ exports.handler = async function(event) {
             month: month,
             date: day,
             detail: detail,
-            emotion: emotion
+            emotion: emotion,
+            anxCount: anxCount,
+            guiltCount: guiltCount,
+            happyCount: happyCount,
+            sadCount: sadCount,
+            shameCount: shameCount,
+            otherCount: otherCount
         })
 
     }
