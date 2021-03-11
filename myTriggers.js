@@ -94,8 +94,16 @@ firebase.auth().onAuthStateChanged(async function(user) {
         data: {
             labels: ['Anxious', 'Guilty', 'Happy', 'Sad', 'Shame', 'Other'],
             datasets: [{
-                label: 'My Trigger History',
-                backgroundColor: 'rgb(255, 99, 132)',
+                //label: 'My Trigger History',
+                //backgroundColor: 'rgb(255, 99, 132)',
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.7)',
+                  'rgba(54, 162, 235, 0.7)',
+                  'rgba(255, 206, 86, 0.7)',
+                  'rgba(75, 192, 192, 0.7)',
+                  'rgba(153, 102, 255, 0.7)',
+                  'rgba(255, 159, 64, 0.7)'
+              ],
                 borderColor: 'rgb(255, 99, 132)',
                 data: [chartData.anxCount, chartData.guiltCount, chartData.happyCount, chartData.sadCount, chartData.shameCount, chartData.otherCount]
             }]
@@ -103,7 +111,15 @@ firebase.auth().onAuthStateChanged(async function(user) {
     
         // Configuration options go here
         options: {
-          responsive: false 
+          responsive: false,
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: 'My Trigger History',
+            fontSize: 36
+          }
         }
     });
   }
