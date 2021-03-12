@@ -84,7 +84,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
     
   })
 
-  document.querySelector('.rangeSevenTriggers').addEventListener('click', async function(event){
+  document.querySelector('.rangeSevenDayTriggers').addEventListener('click', async function(event){
     event.preventDefault()
     document.querySelector('.myTriggers').innerHTML = ""
     let response = await fetch( `/.netlify/functions/get_triggers?range=7`)
