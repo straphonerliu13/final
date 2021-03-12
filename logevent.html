@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bekome | My Trigger Events</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
 </head>
 <body>
 
@@ -53,28 +54,33 @@
                 <label class="font-bold">How did you feel?</label><br>
 
                 <div class="space-y-2">
-                    <input type="checkbox" id="feelings-happy" name="feelings-happy">
-                    <label for="feelings-happy">Happy</label><br>
+                    <input type="radio" id="trigger-angry" name="trigger-feeling">
+                    <label for="trigger-angry">Angry</label><br>
 
-                    <input type="checkbox" id="feelings-sad" name="feelings-sad">
-                    <label for="feelings-sad">Sad</label><br>
+                    <input type="radio" id="trigger-anxious" name="trigger-feeling">
+                    <label for="trigger-anxious">Anxious</label><br>
 
-                    <input type="checkbox" id="feelings-mad" name="feelings-mad">
-                    <label for="feelings-mad">Mad</label><br>
+                    <input type="radio" id="trigger-guilt" name="trigger-feeling">
+                    <label for="trigger-guilt">Guilty</label><br>
 
-                    <input type="checkbox" id="feelings-confused" name="feelings-confused">
-                    <label for="feelings-confused">Confused</label><br>
+                    <input type="radio" id="trigger-sad" name="trigger-feeling">
+                    <label for="trigger-sad">Confused</label><br>
 
-                    <input type="checkbox" id="feelings-other" name="feelings-other">
+                    <input type="radio" id="trigger-shame" name="trigger-feeling">
+                    <label for="trigger-shame">Ashamed</label><br>
+
+                    <input type="radio" id="feelings-other" name="trigger-feeling">
                     <label for="feelings-other">Other</label>
                     <input class="border-2 border-blue-500" type="text" id="feelings-other">
                 </div>
             </div>
 
-            <button class="pb-16 font-bold">Log event</button>
+            <button class="log-trigger text-center text-white text-xl block font-bold bg-blue-300 rounded mt-4 ml-16 mr-16 px-2 py-2">Log event</button>
 
         </div>
 
     </form>
+
+    <script src="logevent.js"></script>
 </body>
 </html>
