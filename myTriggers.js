@@ -33,7 +33,14 @@ firebase.auth().onAuthStateChanged(async function(user) {
                 'rgba(153, 102, 255, 0.7)',
                 'rgba(255, 159, 64, 0.7)'
             ],
-              borderColor: 'rgb(255, 99, 132)',
+              borderColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
               data: []
           }]
       },
@@ -126,10 +133,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
       let trigger = triggers[i]
       //console.log(trigger.triggerDate)
       document.querySelector('.myTriggers').insertAdjacentHTML('afterbegin',`
-        <div class="${trigger.id}">
+        <div class="${trigger.id} mb-4 border-b-2">
           <span class="date">${trigger.month}/${trigger.date}/${trigger.year} | </span>
           <span class="trigger">${trigger.emotion}</span>
           <p class="ml-8 font-normal">${trigger.detail}</p>
+          <button type ="button" class="text-red-500 text-bold ml-4">Delete</button>
         </div>
       `)
     }
