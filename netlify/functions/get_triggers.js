@@ -5,11 +5,13 @@ exports.handler = async function(event) {
     let db = firebase.firestore()                             
     let triggerData = []
     
-    let range = event.queryStringParameters.range  //Sets lower bound of trigger event query                          
+    let range = event.queryStringParameters.range  //Sets lower bound of trigger event query
+    let uid = event.queryStringParameters.uid                          
     let d = new Date()
     d.setDate(d.getDate()-range)
 
     let triggerQuery = await db.collection('triggerEvent')      //Pull triggers from Firestore in reverse chrono order       
+                             //.where('userId', '==', `${uid}`)    //TODO: Uncomment when done testing remaining functionality
                              .where('triggerDate','>=', d)
                              .orderBy('triggerDate','desc')              
                              .get()

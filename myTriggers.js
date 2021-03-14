@@ -10,7 +10,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
       email: user.email
     })
 
-    let response = await fetch( `/.netlify/functions/get_triggers?range=90`)
+    let response = await fetch( `/.netlify/functions/get_triggers?range=90&uid=${user.uid}`)
     let triggers = await response.json()
 
     let chartData = triggers[triggers.length-1]
@@ -87,7 +87,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
   document.querySelector('.rangeSevenDayTriggers').addEventListener('click', async function(event){
     event.preventDefault()
     document.querySelector('.myTriggers').innerHTML = ""
-    let response = await fetch( `/.netlify/functions/get_triggers?range=7`)
+    let response = await fetch( `/.netlify/functions/get_triggers?range=7&uid=${user.uid}`)
     let triggers = await response.json()
     renderTriggers(triggers, chart)
   })
@@ -95,7 +95,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
   document.querySelector('.rangeThirtyDayTriggers').addEventListener('click', async function(event){
     event.preventDefault()
     document.querySelector('.myTriggers').innerHTML = ""
-    let response = await fetch( `/.netlify/functions/get_triggers?range=30`)
+    let response = await fetch( `/.netlify/functions/get_triggers?range=30&uid=${user.uid}`)
     let triggers = await response.json()
     renderTriggers(triggers, chart)
   })
@@ -103,7 +103,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
   document.querySelector('.rangeNinetyDayTriggers').addEventListener('click', async function(event){
     event.preventDefault()
     document.querySelector('.myTriggers').innerHTML = ""
-    let response = await fetch( `/.netlify/functions/get_triggers?range=90`)
+    let response = await fetch( `/.netlify/functions/get_triggers?range=90&uid=${user.uid}`)
     let triggers = await response.json()
     renderTriggers(triggers, chart)
   })
