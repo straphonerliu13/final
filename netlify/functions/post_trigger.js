@@ -23,7 +23,7 @@ exports.handler = async function(event) {
         statusCode: 200,
         body: JSON.stringify({
             thingToKnow: 'This is working'
-        }
+        })
       }
 }
 
