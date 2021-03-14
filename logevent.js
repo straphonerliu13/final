@@ -15,7 +15,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let triggerSad
         let triggerShame
         let triggerOther
-        let triggerOtherText
+
 
         if (document.getElementById('trigger-angry').checked) {
             triggerAngry = true
@@ -40,7 +40,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
         if (document.getElementById('trigger-other').checked) {
             triggerOther = document.querySelector('#trigger-other-text').value
         } else {triggerOther = ''}
-
 
         console.log(triggerUser)
         console.log(triggerDate)
@@ -71,7 +70,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         console.log(triggerEvent)
 
         window.location = 'myTriggers.html'
-
+    
       })
   
     } else {
@@ -82,3 +81,16 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
     }
   })
+
+    // let feelings = [angry,anxious,guilt,sad,shame]
+// for (i=0; i<feelings.length; i++) {
+//     let feeling = feelings[i]
+//     checkFeeling(feeling)
+//     console.log(`trigger-${feeling}`)
+// }
+
+// async function checkFeeling(feeling) {
+//     if (document.getElementById(`trigger-${feeling}`).checked) {
+//         `trigger-${feeling}` = true
+//     } else {`trigger-${feeling}` = false}
+// }
