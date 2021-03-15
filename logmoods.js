@@ -37,11 +37,13 @@ firebase.auth().onAuthStateChanged(async function(user) {
     // console.log(moods)
     let response = await fetch(`/.netlify/functions/get_moods?userId=${user.uid}`)
     let moods = await response.json()
+    console.log(moods.length)
 
     // Step 1: On page Load, loop through the moods collection and populate the dates + moods in the 'Past Moods' section
     for (let i=0; i<moods.length; i++) {
         let mood = moods[i]
         let moodsId = mood.id
+        let sDate = mood.sDate
         let moodDate = mood.moodDate
         if (mood.moodVeryBad) {moodVeryBad = 1} else {moodVeryBad = 0}
         if (mood.moodBad) {moodBad = 1} else {moodBad = 0}
@@ -58,7 +60,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
         document.querySelector('.past-moods').insertAdjacentHTML('beforeend', `
         <div class="flex py-1 text-xl">
-            <div> ${moodsId} </div>
+            <div> ${sDate} </div>
             <img src="../assets/icons/icon1-${moodVeryBad}.svg">
             <img src="../assets/icons/icon2-${moodBad}.svg">
             <img src="../assets/icons/icon3-${moodNeutral}.svg">
@@ -76,7 +78,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         // console.log(dt)
 
         // if ((moodDate.toDate().getFullYear() == today.getFullYear()) && (moodDate.toDate().getMonth() == today.getMonth()) && (moodDate.toDate().getDate() == today.getDate())) {
-        if (dt == moodsId) {
+        if (dt == sDate) {
             document.querySelector('.mood').innerHTML = `
                 <div class="mood flex justify-left space-x-8 border-blue-400">
                     <img src="../assets/icons/icon1-${moodVeryBad}.svg" id="icon1">
@@ -86,7 +88,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
                     <img src="../assets/icons/icon5-${moodVeryGood}.svg" id="icon5">
                  </div>
                 `
-        }
+        } else {console.log(dt) 
+            console.log(sDate)}
 
     }
 
@@ -118,13 +121,19 @@ firebase.auth().onAuthStateChanged(async function(user) {
         icon5value = 0
 
         // If an icon is clicked, change it to selected and others to unselected 
-        outputElement.innerHTML = `
-        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
-        `
+        // outputElement.innerHTML = `
+        // <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        // <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        // <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        // <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        // <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
+        // `
+
+        document.getElementById("icon1").src = "../assets/icons/icon1-1.svg"
+        document.getElementById("icon2").src = "../assets/icons/icon2-0.svg"
+        document.getElementById("icon3").src = "../assets/icons/icon3-0.svg"
+        document.getElementById("icon4").src = "../assets/icons/icon4-0.svg"
+        document.getElementById("icon5").src = "../assets/icons/icon5-0.svg"
     })
 
     // Adding Event Listener to Second Icon
@@ -139,13 +148,19 @@ firebase.auth().onAuthStateChanged(async function(user) {
         icon5value = 0
 
         // If an icon is clicked, change it to selected and others to unselected 
-        outputElement.innerHTML = `
-        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
-        `
+        // outputElement.innerHTML = `
+        // <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        // <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        // <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        // <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        // <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
+        // `
+
+        document.getElementById("icon1").src = "../assets/icons/icon1-0.svg"
+        document.getElementById("icon2").src = "../assets/icons/icon2-1.svg"
+        document.getElementById("icon3").src = "../assets/icons/icon3-0.svg"
+        document.getElementById("icon4").src = "../assets/icons/icon4-0.svg"
+        document.getElementById("icon5").src = "../assets/icons/icon5-0.svg"
     })
 
     // Adding Event Listener to Third Icon
@@ -160,13 +175,19 @@ firebase.auth().onAuthStateChanged(async function(user) {
         icon5value = 0
 
         // If an icon is clicked, change it to selected and others to unselected 
-        outputElement.innerHTML = `
-        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
-        `
+        // outputElement.innerHTML = `
+        // <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        // <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        // <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        // <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        // <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
+        // `
+
+        document.getElementById("icon1").src = "../assets/icons/icon1-0.svg"
+        document.getElementById("icon2").src = "../assets/icons/icon2-0.svg"
+        document.getElementById("icon3").src = "../assets/icons/icon3-1.svg"
+        document.getElementById("icon4").src = "../assets/icons/icon4-0.svg"
+        document.getElementById("icon5").src = "../assets/icons/icon5-0.svg"
     })
 
     // Adding Event Listener to Fourth Icon
@@ -181,13 +202,19 @@ firebase.auth().onAuthStateChanged(async function(user) {
         icon5value = 0
 
         // If an icon is clicked, change it to selected and others to unselected 
-        outputElement.innerHTML = `
-        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
-        `
+        // outputElement.innerHTML = `
+        // <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        // <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        // <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        // <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        // <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
+        // `
+
+        document.getElementById("icon1").src = "../assets/icons/icon1-0.svg"
+        document.getElementById("icon2").src = "../assets/icons/icon2-0.svg"
+        document.getElementById("icon3").src = "../assets/icons/icon3-0.svg"
+        document.getElementById("icon4").src = "../assets/icons/icon4-1.svg"
+        document.getElementById("icon5").src = "../assets/icons/icon5-0.svg"
     })
 
     // Adding Event Listener to Fifth Icon
@@ -203,13 +230,19 @@ firebase.auth().onAuthStateChanged(async function(user) {
         
 
         // If an icon is clicked, change it to selected and others to unselected 
-        outputElement.innerHTML = `
-        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
-        `
+        // outputElement.innerHTML = `
+        // <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        // <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        // <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        // <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        // <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
+        // `
+
+        document.getElementById("icon1").src = "../assets/icons/icon1-0.svg"
+        document.getElementById("icon2").src = "../assets/icons/icon2-0.svg"
+        document.getElementById("icon3").src = "../assets/icons/icon3-0.svg"
+        document.getElementById("icon4").src = "../assets/icons/icon4-0.svg"
+        document.getElementById("icon5").src = "../assets/icons/icon5-1.svg"
     })
 
     // Step 4: If user clicks on the 'Log mood' button, update the moods collection in firebase with the updated values for each icon (0 or 1)
@@ -235,8 +268,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
         console.log(icon4value + icon4boolean)
         console.log(icon5value + icon5boolean)
         
-        let docRef = await db.collection('moods').doc(`${dt}`).set({
-            id: dt,
+        let docRef = await db.collection('moods').doc(`${dt}-${user.uid}`).set({
+        // let docRef = await db.collection('moods').where('userId', '==', `${user.uid}`).where('sdate', '==', `${dt}`).set({
+            id: dt+"-"+user.uid,
+            sDate: dt,
             userId: user.uid,
             moodDate: firebase.firestore.FieldValue.serverTimestamp(),
             moodVeryBad: icon1boolean,
@@ -245,6 +280,19 @@ firebase.auth().onAuthStateChanged(async function(user) {
             moodGood: icon4boolean,
             moodVeryGood: icon5boolean
         })
+
+        // let docRef = await db.collection('moods').doc(`2021-3-12-xsfsSTAbFdOStQKYzXQnMY7Ilvb2`).set({
+        //     // let docRef = await db.collection('moods').where('userId', '==', `${user.uid}`).where('sdate', '==', `${dt}`).set({
+        //         id: "2021-3-12-xsfsSTAbFdOStQKYzXQnMY7Ilvb2",
+        //         sDate: "2021-3-12",
+        //         userId: "xsfsSTAbFdOStQKYzXQnMY7Ilvb2",
+        //         moodDate: firebase.firestore.FieldValue.serverTimestamp(),
+        //         moodVeryBad: icon1boolean,
+        //         moodBad: icon2boolean,
+        //         moodNeutral: icon3boolean,
+        //         moodGood: icon4boolean,
+        //         moodVeryGood: icon5boolean
+        //     })
 
         document.location.href = 'logmoods.html'
         

@@ -19,6 +19,7 @@ exports.handler = async function(event) {
 
     moodsData.push({
         id: moodsId,
+        sDate: mood.sDate,
         userId: mood.userId,
         moodDate: mood.moodDate,
         moodVeryBad: mood.moodVeryBad,
@@ -28,12 +29,11 @@ exports.handler = async function(event) {
         moodVeryGood: mood.moodVeryGood
     })
 
-
+    }
     
     // return an Object in the format that a Netlify lambda function expects
     return {
       statusCode: 200,
       body: JSON.stringify(moodsData)
     }
-  }
 }
