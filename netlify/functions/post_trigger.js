@@ -8,6 +8,7 @@ exports.handler = async function(event) {
     console.log(event)
     let body = JSON.parse(event.body)
     let userId = body.userId
+    let username = body.username
     let triggerDate = body.triggerDate
     let triggerDetail = body.triggerDetail
     let triggerAngry = body.triggerAngry
@@ -30,6 +31,7 @@ exports.handler = async function(event) {
 
     let newTriggerData = {
         userId: userId,
+        username: username,
         created: firebase.firestore.FieldValue.serverTimestamp(),
         triggerDate: mydate,
         triggerDetail: triggerDetail,

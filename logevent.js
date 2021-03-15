@@ -2,11 +2,13 @@ firebase.auth().onAuthStateChanged(async function(user) {
     if (user) {
       // Signed in
       console.log('signed in')
+      console.log(user.displayName)
 
       document.querySelector('form').addEventListener('submit', async function (event) {
         event.preventDefault()
         console.log('submit button clicked')
-        let triggerUser = user.uid
+        let userId = user.uid
+        let username = user.displayName
         let triggerDate = document.querySelector('#event-date').value
         let triggerDetail = document.querySelector('#event-description').value
         let triggerAngry
@@ -41,7 +43,8 @@ firebase.auth().onAuthStateChanged(async function(user) {
             triggerOther = document.querySelector('#trigger-other-text').value
         } else {triggerOther = ''}
 
-        console.log(triggerUser)
+        console.log(userId)
+        console.log(username)
         console.log(triggerDate)
         console.log(triggerDetail)
         console.log(`angry is ${triggerAngry}`)
@@ -55,6 +58,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
             method: 'POST',
             body: JSON.stringify({
                userId: user.uid,
+               username: username,
                triggerDate: triggerDate,
                triggerDetail: triggerDetail,
                triggerAngry: triggerAngry,
