@@ -13,7 +13,7 @@ exports.handler = async function(event) {
     let triggerQuery = await db.collection('triggerEvent')      //Pull triggers from Firestore in reverse chrono order       
                              //.where('userId', '==', `${uid}`)    //TODO: Uncomment when done testing remaining functionality
                              //.where('triggerDate','>=', d)
-                             //.orderBy('triggerDate','desc')              
+                             .orderBy('triggerDate','desc')              
                              .get()
     let triggers = triggerQuery.docs                               
 
