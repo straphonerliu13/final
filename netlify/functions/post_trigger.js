@@ -17,15 +17,21 @@ exports.handler = async function(event) {
     let triggerShame = body.triggerShame
     let triggerOther = body.triggerOther
 
-    console.log(`userId is ${userId}`)
-    console.log(`date is ${triggerDate}`)
-    console.log(`description is ${triggerDetail}`)
-    console.log(`angry -s ${triggerAngry}`)
+    var parts = triggerDate.split('-');
+    // Please pay attention to the month (parts[1]); JavaScript counts months from 0:
+    // January - 0, February - 1, etc.
+    var mydate = new Date(parts[0], parts[1] - 1, parts[2]); 
+
+
+    // console.log(`userId is ${userId}`)
+    // console.log(`date is ${triggerDate}`)
+    // console.log(`description is ${triggerDetail}`)
+    // console.log(`angry -s ${triggerAngry}`)
 
     let newTriggerData = {
         userId: userId,
         created: firebase.firestore.FieldValue.serverTimestamp(),
-        triggerDate: triggerDate,
+        triggerDate: mydate,
         triggerDetail: triggerDetail,
         triggerAngry: triggerAngry,
         triggerAnxious: triggerAnxious,
