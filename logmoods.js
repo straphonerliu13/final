@@ -45,11 +45,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
         document.querySelector('.past-moods').insertAdjacentHTML('beforeend', `
         <div class="flex py-1 text-xl">
             <div> ${moodsId} </div>
-            <img src="../final/assets/icons/icon1-${moodVeryBad}.svg">
-            <img src="../final/assets/icons/icon2-${moodBad}.svg">
-            <img src="../final/assets/icons/icon3-${moodNeutral}.svg">
-            <img src="../final/assets/icons/icon4-${moodGood}.svg">
-            <img src="../final/assets/icons/icon5-${moodVeryGood}.svg">
+            <img src="../assets/icons/icon1-${moodVeryBad}.svg">
+            <img src="../assets/icons/icon2-${moodBad}.svg">
+            <img src="../assets/icons/icon3-${moodNeutral}.svg">
+            <img src="../assets/icons/icon4-${moodGood}.svg">
+            <img src="../assets/icons/icon5-${moodVeryGood}.svg">
         </div>
         `)
 
@@ -65,11 +65,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
         if (dt == moodsId) {
             document.querySelector('.mood').innerHTML = `
                 <div class="mood flex justify-left space-x-8 border-blue-400">
-                    <img src="../final/assets/icons/icon1-${moodVeryBad}.svg" id="icon1">
-                    <img src="../final/assets/icons/icon2-${moodBad}.svg" id="icon2">
-                    <img src="../final/assets/icons/icon3-${moodNeutral}.svg" id="icon3">
-                    <img src="../final/assets/icons/icon4-${moodGood}.svg" id="icon4">
-                    <img src="../final/assets/icons/icon5-${moodVeryGood}.svg" id="icon5">
+                    <img src="../assets/icons/icon1-${moodVeryBad}.svg" id="icon1">
+                    <img src="../assets/icons/icon2-${moodBad}.svg" id="icon2">
+                    <img src="../assets/icons/icon3-${moodNeutral}.svg" id="icon3">
+                    <img src="../assets/icons/icon4-${moodGood}.svg" id="icon4">
+                    <img src="../assets/icons/icon5-${moodVeryGood}.svg" id="icon5">
                  </div>
                 `
         }
@@ -105,11 +105,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
+        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
@@ -126,11 +126,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
+        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
@@ -147,11 +147,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
+        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
@@ -168,11 +168,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
+        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
@@ -190,11 +190,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
 
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
-        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
-        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
-        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
-        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
+        <img src="../assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
