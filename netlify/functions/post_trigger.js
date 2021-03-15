@@ -11,7 +11,7 @@ exports.handler = async function(event) {
     let username = body.username
     let triggerDateString = body.triggerDate
     let triggerDetail = body.triggerDetail
-    let triggerAngry = body.triggerAngry
+    let triggerHappy = body.triggerHappy
     let triggerAnxious = body.triggerAnxious
     let triggerGuilt = body.triggerGuilt
     let triggerSad = body.triggerSad
@@ -35,7 +35,7 @@ exports.handler = async function(event) {
         created: firebase.firestore.FieldValue.serverTimestamp(),
         triggerDate: triggerDate,
         triggerDetail: triggerDetail,
-        triggerAngry: triggerAngry,
+        triggerHappy: triggerHappy,
         triggerAnxious: triggerAnxious,
         triggerGuilt: triggerGuilt,
         triggerSad: triggerSad,

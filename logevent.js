@@ -11,7 +11,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let username = user.displayName
         let triggerDate = document.querySelector('#event-date').value
         let triggerDetail = document.querySelector('#event-description').value
-        let triggerAngry
+        let triggerHappy
         let triggerAnxious
         let triggerGuilt
         let triggerSad
@@ -19,9 +19,9 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let triggerOther
 
 
-        if (document.getElementById('trigger-angry').checked) {
-            triggerAngry = true
-        } else {triggerAngry = false}
+        if (document.getElementById('trigger-happy').checked) {
+            triggerHappy = true
+        } else {triggerHappy = false}
 
         if (document.getElementById('trigger-anxious').checked) {
             triggerAnxious = true
@@ -47,7 +47,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
         console.log(username)
         console.log(triggerDate)
         console.log(triggerDetail)
-        console.log(`angry is ${triggerAngry}`)
+        console.log(`happy is ${triggerHappy}`)
         console.log(`anxious is ${triggerAnxious}`)
         console.log(`guilty is ${triggerGuilt}`)
         console.log(`sad is ${triggerSad}`)
@@ -61,7 +61,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
                username: username,
                triggerDate: triggerDate,
                triggerDetail: triggerDetail,
-               triggerAngry: triggerAngry,
+               triggerHappy: triggerHappy,
                triggerAnxious: triggerAnxious,
                triggerGuilt: triggerGuilt,
                triggerSad: triggerSad,
