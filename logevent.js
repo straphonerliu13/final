@@ -2,14 +2,16 @@ firebase.auth().onAuthStateChanged(async function(user) {
     if (user) {
       // Signed in
       console.log('signed in')
+      console.log(user.displayName)
 
       document.querySelector('form').addEventListener('submit', async function (event) {
         event.preventDefault()
         console.log('submit button clicked')
-        let triggerUser = user.uid
+        let userId = user.uid
+        let username = user.displayName
         let triggerDate = document.querySelector('#event-date').value
         let triggerDetail = document.querySelector('#event-description').value
-        let triggerAngry
+        let triggerHappy
         let triggerAnxious
         let triggerGuilt
         let triggerSad
@@ -17,9 +19,9 @@ firebase.auth().onAuthStateChanged(async function(user) {
         let triggerOther
 
 
-        if (document.getElementById('trigger-angry').checked) {
-            triggerAngry = true
-        } else {triggerAngry = false}
+        if (document.getElementById('trigger-happy').checked) {
+            triggerHappy = true
+        } else {triggerHappy = false}
 
         if (document.getElementById('trigger-anxious').checked) {
             triggerAnxious = true
@@ -41,10 +43,11 @@ firebase.auth().onAuthStateChanged(async function(user) {
             triggerOther = document.querySelector('#trigger-other-text').value
         } else {triggerOther = ''}
 
-        console.log(triggerUser)
+        console.log(userId)
+        console.log(username)
         console.log(triggerDate)
         console.log(triggerDetail)
-        console.log(`angry is ${triggerAngry}`)
+        console.log(`happy is ${triggerHappy}`)
         console.log(`anxious is ${triggerAnxious}`)
         console.log(`guilty is ${triggerGuilt}`)
         console.log(`sad is ${triggerSad}`)
@@ -55,9 +58,10 @@ firebase.auth().onAuthStateChanged(async function(user) {
             method: 'POST',
             body: JSON.stringify({
                userId: user.uid,
+               username: username,
                triggerDate: triggerDate,
                triggerDetail: triggerDetail,
-               triggerAngry: triggerAngry,
+               triggerHappy: triggerHappy,
                triggerAnxious: triggerAnxious,
                triggerGuilt: triggerGuilt,
                triggerSad: triggerSad,

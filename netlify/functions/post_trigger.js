@@ -8,26 +8,34 @@ exports.handler = async function(event) {
     console.log(event)
     let body = JSON.parse(event.body)
     let userId = body.userId
-    let triggerDate = body.triggerDate
+    let username = body.username
+    let triggerDateString = body.triggerDate
     let triggerDetail = body.triggerDetail
-    let triggerAngry = body.triggerAngry
+    let triggerHappy = body.triggerHappy
     let triggerAnxious = body.triggerAnxious
     let triggerGuilt = body.triggerGuilt
     let triggerSad = body.triggerSad
     let triggerShame = body.triggerShame
     let triggerOther = body.triggerOther
 
-    console.log(`userId is ${userId}`)
-    console.log(`date is ${triggerDate}`)
-    console.log(`description is ${triggerDetail}`)
-    console.log(`angry -s ${triggerAngry}`)
+    var dateParts = triggerDateString.split('-');
+    // Please pay attention to the month (parts[1]); JavaScript counts months from 0:
+    // January - 0, February - 1, etc.
+    var triggerDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]); 
+
+
+    // console.log(`userId is ${userId}`)
+    // console.log(`date is ${triggerDate}`)
+    // console.log(`description is ${triggerDetail}`)
+    // console.log(`angry -s ${triggerAngry}`)
 
     let newTriggerData = {
         userId: userId,
+        username: username,
         created: firebase.firestore.FieldValue.serverTimestamp(),
         triggerDate: triggerDate,
         triggerDetail: triggerDetail,
-        triggerAngry: triggerAngry,
+        triggerHappy: triggerHappy,
         triggerAnxious: triggerAnxious,
         triggerGuilt: triggerGuilt,
         triggerSad: triggerSad,
