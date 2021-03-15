@@ -16,6 +16,20 @@ firebase.auth().onAuthStateChanged(async function(user) {
         email: user.email
     })
 
+    document.querySelector('.sign-in-or-sign-out').insertAdjacentHTML('beforebegin',`
+    <h1 class="w-1/6 text-m text-black">Hello, ${user.displayName}!</h1>
+  `)
+
+  document.querySelector('.sign-in-or-sign-out').innerHTML = `
+    <a href = "#" class = "sign-out-button text-blue-400 underline"> Sign Out </a>`
+
+  document.querySelector('.sign-out-button').addEventListener('click', function(event){
+    event.preventDefault()
+    firebase.auth().signOut()
+    document.location.href = 'index.html'
+    
+  })
+
     // let querySnapshot = await db.collection('moods')
     //                             .where('userId', '==', user.uid)
     //                             .get()
