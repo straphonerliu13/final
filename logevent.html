@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bekome | My Trigger Events</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
 </head>
 <body>
 
@@ -29,52 +30,72 @@
 
     <!-- Why doesn't the "Hi, Name!" and Sign Out button appear here?-->
     
-    <form>
-        <div class="flex-auto space-x-5 space-y-4">
-            
-            <!-- UPDATE BACK LINK TO HOMEPAGE IF CHANGES FROM index.html -->
-            <button onclick="location.href='myTriggers.html'" type="button" class="block font-bold mt-8 ml-5">Back</button>
-            
-            <div class="font-bold text-blue-400 text-3xl">Log a trigger event</div>
+    <!-- UPDATE BACK LINK TO HOMEPAGE IF CHANGES FROM index.html -->
+    <button onclick="location.href='myTriggers.html'" type="button" class="text-center text-sm text-white block font-bold bg-blue-300 rounded m-4 px-2 py-2">Back</button>
 
-            <div>
-                <label for="event-date" class="font-bold">Date of event</label>
-                <input class="border-2 border-blue-500" type="date" id="event-date" name="eventDate">
-            </div>
-        
-            <div class="render">
-                <label for="event-description" class="font-bold">Describe what happened</label><br>
-                <textarea rows="6" cols="50" class="border-2 border-blue-500 resize" type="text" id="event-description" name="eventDescription"></textarea>
+    <div class="font-bold text-blue-400 text-3xl m-4 space-y-2">Log a trigger event</div>
 
-                <!-- <input class="border-2 border-blue-500" style="height:100px; width:500px" type="text" id="event-description" name="eventDescription"> -->
-            </div>
+    <form class="flex-auto m-4 space-y-2">
 
-            <div>
-                <label class="font-bold">How did you feel?</label><br>
-
-                <div class="space-y-2">
-                    <input type="checkbox" id="feelings-happy" name="feelings-happy">
-                    <label for="feelings-happy">Happy</label><br>
-
-                    <input type="checkbox" id="feelings-sad" name="feelings-sad">
-                    <label for="feelings-sad">Sad</label><br>
-
-                    <input type="checkbox" id="feelings-mad" name="feelings-mad">
-                    <label for="feelings-mad">Mad</label><br>
-
-                    <input type="checkbox" id="feelings-confused" name="feelings-confused">
-                    <label for="feelings-confused">Confused</label><br>
-
-                    <input type="checkbox" id="feelings-other" name="feelings-other">
-                    <label for="feelings-other">Other</label>
-                    <input class="border-2 border-blue-500" type="text" id="feelings-other">
-                </div>
-            </div>
-
-            <button class="pb-16 font-bold">Log event</button>
-
+        <div>
+            <label class="font-bold" for="event-date">Date of event</label>
+            <input class="border-2 border-blue-500" type="date" id="event-date" name="eventDate">
         </div>
 
+        <div class="render">
+            <label for="event-description" class="font-bold">Describe what happened</label><br>
+            <textarea rows="6" cols="50" class="border-2 border-blue-500 resize" type="text" id="event-description" name="eventDescription"></textarea>
+
+            <!-- <input class="border-2 border-blue-500" style="height:100px; width:500px" type="text" id="event-description" name="eventDescription"> -->
+        </div>
+
+        <div>
+            <label class="font-bold">How did you feel?</label><br>
+
+            <div class="space-y-2">
+                <input type="radio" id="trigger-angry" name="trigger-feeling">
+                <label for="trigger-angry">Angry</label><br>
+
+                <input type="radio" id="trigger-anxious" name="trigger-feeling">
+                <label for="trigger-anxious">Anxious</label><br>
+
+                <input type="radio" id="trigger-guilt" name="trigger-feeling">
+                <label for="trigger-guilt">Guilty</label><br>
+
+                <input type="radio" id="trigger-sad" name="trigger-feeling">
+                <label for="trigger-sad">Sad</label><br>
+
+                <input type="radio" id="trigger-shame" name="trigger-feeling">
+                <label for="trigger-shame">Ashamed</label><br>
+
+                <input type="radio" id="trigger-other" name="trigger-feeling">
+                <label for="feelings-other">Other</label>
+                <input class="border-2 border-blue-500" type="text" id="trigger-other-text">
+            </div>
+        </div>
+
+        <button class="log-trigger text-center text-white text-xl block font-bold bg-blue-300 rounded px-2 py-2">Log event</button>
+
     </form>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+    apiKey: "AIzaSyB5PU2fG0JwIoGe6uaolANAl3elhmji_0Q",
+    authDomain: "kiei-final-4aaa6.firebaseapp.com",
+    projectId: "kiei-final-4aaa6",
+    storageBucket: "kiei-final-4aaa6.appspot.com",
+    messagingSenderId: "687734579914",
+    appId: "1:687734579914:web:ace74c6c9344a5cfe90a33"
+    }; 
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+    <script src="logevent.js"></script>
 </body>
 </html>

@@ -10,10 +10,65 @@ firebase.auth().onAuthStateChanged(async function(user) {
       email: user.email
     })
 
-    let response = await fetch( `/.netlify/functions/get_triggers?range=90`)
+    let response = await fetch( `/.netlify/functions/get_triggers?range=90&uid=${user.uid}`)
     let triggers = await response.json()
-    
-    renderTriggers(triggers)
+
+    let chartData = triggers[triggers.length-1]
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'bar',
+  
+      // The data for our dataset
+      data: {
+          labels: ['Anxious', 'Guilty', 'Happy', 'Sad', 'Shame', 'Other'],
+          datasets: [{
+              //label: 'My Trigger History',
+              //backgroundColor: 'rgb(255, 99, 132)',
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
+              borderColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
+              data: []
+          }]
+      },
+  
+      // Configuration options go here
+      options: {
+        responsive: false,
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: 'My Trigger History',
+          fontSize: 28,
+          position: 'bottom'
+        },
+        scales: {
+          yAxes: [{
+              ticks: {
+                  display: true,
+                  stepSize: 1
+              }
+          }]
+        } 
+      }
+    });
+
+    renderTriggers(triggers, chart)
 
   document.querySelector('.sign-in-or-sign-out').insertAdjacentHTML('beforebegin',`
     <h1 class="w-1/6 text-m text-black">Hello, ${user.displayName}!</h1>
@@ -29,29 +84,30 @@ firebase.auth().onAuthStateChanged(async function(user) {
     
   })
 
-  document.querySelector('.rangeSevenTriggers').addEventListener('click', async function(event){
+  document.querySelector('.rangeSevenDayTriggers').addEventListener('click', async function(event){
     event.preventDefault()
     document.querySelector('.myTriggers').innerHTML = ""
-    let response = await fetch( `/.netlify/functions/get_triggers?range=7`)
+    let response = await fetch( `/.netlify/functions/get_triggers?range=7&uid=${user.uid}`)
     let triggers = await response.json()
-    renderTriggers(triggers)
+    renderTriggers(triggers, chart)
   })
 
   document.querySelector('.rangeThirtyDayTriggers').addEventListener('click', async function(event){
     event.preventDefault()
     document.querySelector('.myTriggers').innerHTML = ""
-    let response = await fetch( `/.netlify/functions/get_triggers?range=30`)
+    let response = await fetch( `/.netlify/functions/get_triggers?range=30&uid=${user.uid}`)
     let triggers = await response.json()
-    renderTriggers(triggers)
+    renderTriggers(triggers, chart)
   })
 
   document.querySelector('.rangeNinetyDayTriggers').addEventListener('click', async function(event){
     event.preventDefault()
     document.querySelector('.myTriggers').innerHTML = ""
-    let response = await fetch( `/.netlify/functions/get_triggers?range=90`)
+    let response = await fetch( `/.netlify/functions/get_triggers?range=90&uid=${user.uid}`)
     let triggers = await response.json()
-    renderTriggers(triggers)
+    renderTriggers(triggers, chart)
   })
+
 
   } else {
     // Signed out
@@ -72,17 +128,22 @@ firebase.auth().onAuthStateChanged(async function(user) {
     ui.start('.sign-in-or-sign-out', authUIConfig)
   }
 
-  function renderTriggers(triggers){
+  function renderTriggers(triggers, chart){
     for(let i = 0; i < triggers.length; i++){
       let trigger = triggers[i]
       //console.log(trigger.triggerDate)
       document.querySelector('.myTriggers').insertAdjacentHTML('afterbegin',`
-        <div class="${trigger.id}">
+        <div class="${trigger.id} mb-4 border-b-2">
           <span class="date">${trigger.month}/${trigger.date}/${trigger.year} | </span>
           <span class="trigger">${trigger.emotion}</span>
+          <p class="ml-8 font-normal">${trigger.detail}</p>
+          <button type ="button" class="text-red-500 font-bold ml-4">Delete</button>
         </div>
-        
       `)
     }
+
+    let chartData = triggers[triggers.length-1]
+    chart.data.datasets[0].data = [chartData.anxCount, chartData.guiltCount, chartData.happyCount, chartData.sadCount, chartData.shameCount, chartData.otherCount]
+    chart.update()
   }
 })

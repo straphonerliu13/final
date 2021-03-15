@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>bekome | Home</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="Chart.css" type="text/css">
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.css" />
 </head>
 
@@ -28,16 +29,20 @@
   <div class="flex border-blue-400 bg-blue-100 p-4">
   </div>
   
-  <div class="myTriggerHeader font-bold">My Triggers | 
-      <button type="button" class="rangeSevenTriggers">7 Days</button> |
+  <div class="myTriggerHeader font-bold ml-4">My Triggers | 
+      <button type="button" class="rangeSevenDayTriggers">7 Days</button> |
       <button type="button" class="rangeThirtyDayTriggers">30 Days</button> | 
       <button type="button" class="rangeNinetyDayTriggers">90 Days</button>
       <div class = "addTriggerButton">
         <a href="logevent.html">Add New Trigger</a>
       </div>
-      <div class="myTriggers">
+      <div class="flex">
+        <div class="myTriggers mr-32 w-1/4"></div>
+        <canvas id="myChart" width="600px" height="600px"></canvas>
       </div>
   </div>
+
+
 
   <!-- Put the Firebase config here -->
   <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -65,6 +70,7 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
+  <script src='Chart.js'></script>
   <script src="myTriggers.js"></script>
 </body>
 
