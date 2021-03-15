@@ -45,20 +45,16 @@
             </div> -->
         
             <div>
-                <label class="font-bold">Log new mood</label><br>
+                <label class="font-bold">Log today's mood</label><br>
             </div>
 
-            <div>
-                <label for="event-date" class="font-bold">Date</label>
-                <input class="border-2 border-blue-500" type="date" id="event-date" name="eventDate">
-            </div>
 
             <div class="mood flex justify-left space-x-8 border-blue-400">
-                <img src="../final/assets/icons/1unselected.svg" id="icon1">
-                <img src="../final/assets/icons/2unselected.svg" id="icon2">
-                <img src="../final/assets/icons/3unselected.svg" id="icon3">
-                <img src="../final/assets/icons/4unselected.svg" id="icon4">
-                <img src="../final/assets/icons/5unselected.svg" id="icon5">
+                <img src="../final/assets/icons/icon1-0.svg" id="icon1">
+                <img src="../final/assets/icons/icon2-0.svg" id="icon2">
+                <img src="../final/assets/icons/icon3-0.svg" id="icon3">
+                <img src="../final/assets/icons/icon4-0.svg" id="icon4">
+                <img src="../final/assets/icons/icon5-0.svg" id="icon5">
             </div>
 
             <button class="log-mood font-bold bg-blue-400 border-4 rounded border-blue-400">Log mood</button>
@@ -69,35 +65,42 @@
         <label class="font-bold">Past moods</label><br>
     </div>
 
-    <!-- HARD CODED TEXT - NEEDS TO BE REPLACED WITH FIREBASE FETCH -->
     <div class="past-moods">
-        <div class="flex py-1 text-xl">
-            <div> 03/10/2021 </div>
-            <img src="../final/assets/icons/1unselected.svg">
-            <img src="../final/assets/icons/2selected.svg">
-            <img src="../final/assets/icons/3unselected.svg">
-            <img src="../final/assets/icons/4unselected.svg">
-            <img src="../final/assets/icons/5unselected.svg">
-        </div>
-        <div class="flex py-1 text-xl">
-            <div> 03/09/2021 </div>
-            <img src="../final/assets/icons/1unselected.svg">
-            <img src="../final/assets/icons/2unselected.svg">
-            <img src="../final/assets/icons/3unselected.svg">
-            <img src="../final/assets/icons/4unselected.svg">
-            <img src="../final/assets/icons/5selected.svg">
-        </div>
-        <div class="flex py-1 text-xl">
-            <div> 03/07/2021 </div>
-            <img src="../final/assets/icons/1selected.svg">
-            <img src="../final/assets/icons/2unselected.svg">
-            <img src="../final/assets/icons/3unselected.svg">
-            <img src="../final/assets/icons/4unselected.svg">
-            <img src="../final/assets/icons/5unselected.svg">
-        </div>
+        <!-- HARD CODED TEXT - NEEDS TO BE REPLACED WITH FIREBASE FETCH -->
     </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+  <!-- FIREBASE CONFIG-->
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.7.3/firebase-ui-auth.js"></script>
+
+  <script>
+    var firebaseConfig = {
+    apiKey: "AIzaSyB5PU2fG0JwIoGe6uaolANAl3elhmji_0Q",
+    authDomain: "kiei-final-4aaa6.firebaseapp.com",
+    projectId: "kiei-final-4aaa6",
+    storageBucket: "kiei-final-4aaa6.appspot.com",
+    messagingSenderId: "687734579914",
+    appId: "1:687734579914:web:ace74c6c9344a5cfe90a33"
+    }; 
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+
 <script src="logmoods.js"></script>
+
 </body>
 </html>

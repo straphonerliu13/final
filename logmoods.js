@@ -1,16 +1,69 @@
-// Step 1: On page Load, check if TODAY'S document is available in firebase in the moods collection
-    // Step 1a: If document is available, fetch values against each icon (0 or 1) and populate the 'Log Today's mood' section
-    // Step 1b: If document is unavailable, do nothing (ensure all icons are set to 0 by default)
-// Step 2: On page Load, loop through the moods collection and populate the dates + moods in the 'Past Moods' section
-// Step 3: If user selects a mood icon in 'Today's mood', change that to 'selected' icon and reset the others
-// Step 4: If user clicks on the 'Log mood' button, update the moods collection in firebase with the updated values for each icon (0 or 1)
+
+
 // 2 Lambda functions - one for read and one for write
 
+let db = firebase.firestore()
 
-window.addEventListener('DOMContentLoaded',function() {
+window.addEventListener('DOMContentLoaded',async function() {
 
     console.log('loaded')
 
+    let querySnapshot = await db.collection('moods').orderBy('moodDate').get()
+    let moods = querySnapshot.docs
+    console.log(moods)
+
+    // Step 1: On page Load, loop through the moods collection and populate the dates + moods in the 'Past Moods' section
+    for (let i=0; i<moods.length; i++) {
+        let moodsId = moods[i].id
+        let moodsData = moods[i].data()
+        let moodDate = moodsData.moodDate
+        if (moodsData.moodVeryBad) {moodVeryBad = 1} else {moodVeryBad = 0}
+        if (moodsData.moodBad) {moodBad = 1} else {moodBad = 0}
+        if (moodsData.moodNeutral) {moodNeutral = 1} else {moodNeutral = 0}
+        if (moodsData.moodGood) {moodGood = 1} else {moodGood = 0}
+        if (moodsData.moodVeryGood) {moodVeryGood = 1} else {moodVeryGood = 0}
+
+        // console.log(moodDate.toDate().getDate())
+        // console.log(moodVeryBad)
+        // console.log(moodBad)
+        // console.log(moodNeutral)
+        // console.log(moodGood)
+        // console.log(moodVeryGood)
+
+        document.querySelector('.past-moods').insertAdjacentHTML('beforeend', `
+        <div class="flex py-1 text-xl">
+            <div> ${moodDate.toDate().toDateString()} </div>
+            <img src="../final/assets/icons/icon1-${moodVeryBad}.svg">
+            <img src="../final/assets/icons/icon2-${moodBad}.svg">
+            <img src="../final/assets/icons/icon3-${moodNeutral}.svg">
+            <img src="../final/assets/icons/icon4-${moodGood}.svg">
+            <img src="../final/assets/icons/icon5-${moodVeryGood}.svg">
+        </div>
+        `)
+
+        // Step 2: On page Load, check if TODAY'S document is available in firebase in the moods collection
+            // Step 2a: If document is available, fetch values against each icon (0 or 1) and populate the 'Log Today's mood' section
+            // Step 2b: If document is unavailable, do nothing (ensure all icons are set to 0 by default)
+
+        let today = new Date();
+        // let dt = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        // console.log(dt)
+
+        if ((moodDate.toDate().getFullYear() == today.getFullYear()) && (moodDate.toDate().getMonth() == today.getMonth()) && (moodDate.toDate().getDate() == today.getDate())) {
+            document.querySelector('.mood').innerHTML = `
+                <div class="mood flex justify-left space-x-8 border-blue-400">
+                    <img src="../final/assets/icons/icon1-${moodVeryBad}.svg" id="icon1">
+                    <img src="../final/assets/icons/icon2-${moodBad}.svg" id="icon2">
+                    <img src="../final/assets/icons/icon3-${moodNeutral}.svg" id="icon3">
+                    <img src="../final/assets/icons/icon4-${moodGood}.svg" id="icon4">
+                    <img src="../final/assets/icons/icon5-${moodVeryGood}.svg" id="icon5">
+                 </div>
+                `
+        }
+
+    }
+
+    // Step 3: If user selects a mood icon in 'Today's mood', change that to 'selected' icon and reset the others
     let outputElement = document.querySelector('.mood')
 
     let img1 = document.querySelector('#icon1')
@@ -19,109 +72,165 @@ window.addEventListener('DOMContentLoaded',function() {
     let img4 = document.querySelector('#icon4')
     let img5 = document.querySelector('#icon5')
 
+    let icon1value = 0
+    let icon2value = 0
+    let icon3value = 0
+    let icon4value = 0
+    let icon5value = 0
+
+
 // Adding Event Listener to First Icon
-    img1.addEventListener('click', function(event) {
+    img1.addEventListener('click', async function(event) {
         console.log('icon 1 clicked')
         event.preventDefault()
 
+        icon1value = 1
+        icon2value = 0
+        icon3value = 0
+        icon4value = 0
+        icon5value = 0
+
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/1selected.svg">
-        <img src="../final/assets/icons/2unselected.svg">
-        <img src="../final/assets/icons/3unselected.svg">
-        <img src="../final/assets/icons/4unselected.svg">
-        <img src="../final/assets/icons/5unselected.svg">
+        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
     // Adding Event Listener to Second Icon
-    img2.addEventListener('click', function(event) {
+    img2.addEventListener('click', async function(event) {
         console.log('icon 2 clicked')
         event.preventDefault()
 
+        icon1value = 0
+        icon2value = 1
+        icon3value = 0
+        icon4value = 0
+        icon5value = 0
+
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/1unselected.svg">
-        <img src="../final/assets/icons/2selected.svg">
-        <img src="../final/assets/icons/3unselected.svg">
-        <img src="../final/assets/icons/4unselected.svg">
-        <img src="../final/assets/icons/5unselected.svg">
+        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
     // Adding Event Listener to Third Icon
-    img3.addEventListener('click', function(event) {
+    img3.addEventListener('click', async function(event) {
         console.log('icon 3 clicked')
         event.preventDefault()
 
+        icon1value = 0
+        icon2value = 0
+        icon3value = 1
+        icon4value = 0
+        icon5value = 0
+
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/1unselected.svg">
-        <img src="../final/assets/icons/2unselected.svg">
-        <img src="../final/assets/icons/3selected.svg">
-        <img src="../final/assets/icons/4unselected.svg">
-        <img src="../final/assets/icons/5unselected.svg">
+        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
     // Adding Event Listener to Fourth Icon
-    img4.addEventListener('click', function(event) {
+    img4.addEventListener('click', async function(event) {
         console.log('icon 4 clicked')
         event.preventDefault()
 
+        icon1value = 0
+        icon2value = 0
+        icon3value = 0
+        icon4value = 1
+        icon5value = 0
+
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/1unselected.svg">
-        <img src="../final/assets/icons/2unselected.svg">
-        <img src="../final/assets/icons/3unselected.svg">
-        <img src="../final/assets/icons/4selected.svg">
-        <img src="../final/assets/icons/5unselected.svg">
+        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
     })
 
     // Adding Event Listener to Fifth Icon
-    img5.addEventListener('click', function(event) {
+    img5.addEventListener('click', async function(event) {
         console.log('icon 5 clicked')
         event.preventDefault()
 
+        icon1value = 0
+        icon2value = 0
+        icon3value = 0
+        icon4value = 0
+        icon5value = 1
+        
+
         // If an icon is clicked, change it to selected and others to unselected 
         outputElement.innerHTML = `
-        <img src="../final/assets/icons/1unselected.svg">
-        <img src="../final/assets/icons/2unselected.svg">
-        <img src="../final/assets/icons/3unselected.svg">
-        <img src="../final/assets/icons/4unselected.svg">
-        <img src="../final/assets/icons/5selected.svg">
+        <img src="../final/assets/icons/icon1-${icon1value}.svg" id="icon1">
+        <img src="../final/assets/icons/icon2-${icon2value}.svg" id="icon2">
+        <img src="../final/assets/icons/icon3-${icon3value}.svg" id="icon3">
+        <img src="../final/assets/icons/icon4-${icon4value}.svg" id="icon4">
+        <img src="../final/assets/icons/icon5-${icon5value}.svg" id="icon5">
         `
+
     })
 
-// Test
-    
+    // Step 4: If user clicks on the 'Log mood' button, update the moods collection in firebase with the updated values for each icon (0 or 1)
+    let td = new Date();
+    let dt = td.getFullYear()+'-'+(td.getMonth()+1)+'-'+td.getDate();
+
+
+
+
+
+
+    document.querySelector('.log-mood').addEventListener('click',async function(event) {
+        event.preventDefault()
+        if (icon1value == 1) {icon1boolean = true} else {icon1boolean = false}
+        if (icon2value == 1) {icon2boolean = true} else {icon2boolean = false}
+        if (icon3value == 1) {icon3boolean = true} else {icon3boolean = false}
+        if (icon4value == 1) {icon4boolean = true} else {icon4boolean = false}
+        if (icon5value == 1) {icon5boolean = true} else {icon5boolean = false}
+
+        console.log(icon1value + icon1boolean)
+        console.log(icon2value + icon2boolean)
+        console.log(icon3value + icon3boolean)
+        console.log(icon4value + icon4boolean)
+        console.log(icon5value + icon5boolean)
+        
+        let docRef = await db.collection('moods').doc(`${dt}`).set({
+            id: dt,
+            userId: "test",
+            moodDate: firebase.firestore.FieldValue.serverTimestamp(),
+            moodVeryBad: icon1boolean,
+            moodBad: icon2boolean,
+            moodNeutral: icon3boolean,
+            moodGood: icon4boolean,
+            moodVeryGood: icon5boolean
+        })
+        
+
+        // let docRef = await db.collection('moods').doc(`${dt}`).set({
+        //     id: "2021-03-14",
+        //     userId: "test",
+        //     moodDate: firebase.firestore.FieldValue.serverTimestamp(),
+        //     moodVeryBad: false,
+        //     moodBad: true,
+        //     moodNeutral: false,
+        //     moodGood: false,
+        //     moodVeryGood: false
+        // })
+    })
 
 })
-
-// let test = document.querySelector('.log-mood')
-//     test.addEventListener('click', function(event) {
-//         console.log('test button clicked')
-//         event.preventDefault()
-
-//         // If an icon is clicked, change it to selected and others to unselected 
-//         outputElement.innerHTML = `
-//         <img src="../final/assets/icons/1unselected.svg">
-//         <img src="../final/assets/icons/2unselected.svg">
-//         <img src="../final/assets/icons/3unselected.svg">
-//         <img src="../final/assets/icons/4unselected.svg">
-//         <img src="../final/assets/icons/5unselected.svg">
-//         `
-//         // If Log mood button is clicked, 'set' the document (save / update) in Firebase - moods collection 
-//         document.querySelector('.mood').insertAdjacentHTML('beforeend',`
-//             <div class="py-4 text-xl">
-//                 <li> ${Today()} 
-//                 <img src="../final/assets/icons/1unselected.svg">
-//                 <img src="../final/assets/icons/2unselected.svg">
-//                 <img src="../final/assets/icons/3unselected.svg">
-//                 <img src="../final/assets/icons/4unselected.svg">
-//                 <img src="../final/assets/icons/5unselected.svg">
-//                 </li>
-//             </div>
-//         `) 
-//     })
