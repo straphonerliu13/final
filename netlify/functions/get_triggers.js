@@ -10,11 +10,17 @@ exports.handler = async function(event) {
     let d = new Date()
     d.setDate(d.getDate()-range)
 
-    let triggerQuery = await db.collection('triggerEvent')      //Pull triggers from Firestore in reverse chrono order       
-                             //.where('userId', '==', `${uid}`)    //TODO: Uncomment when done testing remaining functionality
-                             //.where('triggerDate','>=', d)
-                             .orderBy('triggerDate','desc')              
-                             .get()
+    if(range.length == 0 || uid.length == 1){
+        let triggerQuery = await db.collection('triggerEvent')      //Pull triggers from Firestore in reverse chrono order       
+                                .orderBy('triggerDate','desc')              
+                                .get()
+    } else {
+        let triggerQuery = await db.collection('triggerEvent')      //Pull triggers from Firestore in reverse chrono order       
+                                .where('userId', '==', `${uid}`)    //TODO: Uncomment when done testing remaining functionality
+                                .where('triggerDate','>=', d)
+                                .orderBy('triggerDate','desc')              
+                                .get()
+    }
     let triggers = triggerQuery.docs                               
 
     //Data for chart
