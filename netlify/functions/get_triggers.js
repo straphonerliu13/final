@@ -10,7 +10,7 @@ exports.handler = async function(event) {
     let d = new Date()
     d.setDate(d.getDate()-range)
 
-    if(range.length == 0 || uid.length == 1){
+    if(range.length() == 0 || uid.length() == 1){
         let triggerQuery = await db.collection('triggerEvent')      //Pull triggers from Firestore in reverse chrono order       
                                 .orderBy('triggerDate','desc')              
                                 .get()
