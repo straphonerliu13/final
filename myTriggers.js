@@ -126,24 +126,26 @@ firebase.auth().onAuthStateChanged(async function(user) {
   }
 
   function renderTriggers(triggers, chart){
-    for(let i = 0; i < triggers.length; i++){
-      let trigger = triggers[i]
-      //console.log(trigger.triggerDate)
-      document.querySelector('.myTriggers').insertAdjacentHTML('afterbegin',`
-        <div class="${trigger.id} mb-4 border-b-2">
-          <span class="date">${trigger.month}/${trigger.date}/${trigger.year} | </span>
-          <span class="trigger">${trigger.emotion}</span>
-          <p class="ml-8 font-normal">${trigger.detail}</p>
-          <button type ="button" class="text-red-500 font-bold ml-4 ${trigger.id}-delete">Delete</button>
-        </div>
-      `)
+    if(triggers.length != 0){
+      for(let i = 0; i < triggers.length; i++){
+        let trigger = triggers[i]
+        //console.log(trigger.triggerDate)
+        document.querySelector('.myTriggers').insertAdjacentHTML('afterbegin',`
+          <div class="${trigger.id} mb-4 border-b-2">
+            <span class="date">${trigger.month}/${trigger.date}/${trigger.year} | </span>
+            <span class="trigger">${trigger.emotion}</span>
+            <p class="ml-8 font-normal">${trigger.detail}</p>
+            <button type ="button" class="text-red-500 font-bold ml-4 ${trigger.id}-delete">Delete</button>
+          </div>
+        `)
 
-      deleteEventListener(trigger.id, chart, trigger.emotion)
+        deleteEventListener(trigger.id, chart, trigger.emotion)
+      }
+
+      let chartData = triggers[triggers.length-1]
+      chart.data.datasets[0].data = [chartData.anxCount, chartData.guiltCount, chartData.happyCount, chartData.sadCount, chartData.shameCount, chartData.otherCount]
+      chart.update()
     }
-
-    let chartData = triggers[triggers.length-1]
-    chart.data.datasets[0].data = [chartData.anxCount, chartData.guiltCount, chartData.happyCount, chartData.sadCount, chartData.shameCount, chartData.otherCount]
-    chart.update()
   }
 
   function deleteEventListener(triggerId, chart, emotion){
