@@ -13,7 +13,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
     let response = await fetch( `/.netlify/functions/get_triggers?range=90&uid=${user.uid}`)
     let triggers = await response.json()
 
-    let chartData = triggers[triggers.length-1]
     let ctx = document.getElementById('myChart').getContext('2d');
     let chart = new Chart(ctx, {
       // The type of chart we want to create
@@ -23,8 +22,6 @@ firebase.auth().onAuthStateChanged(async function(user) {
       data: {
           labels: ['Anxious', 'Guilty', 'Happy', 'Sad', 'Shame', 'Other'],
           datasets: [{
-              //label: 'My Trigger History',
-              //backgroundColor: 'rgb(255, 99, 132)',
               backgroundColor: [
                 'rgba(255, 99, 132, 0.7)',
                 'rgba(54, 162, 235, 0.7)',
@@ -137,13 +134,54 @@ firebase.auth().onAuthStateChanged(async function(user) {
           <span class="date">${trigger.month}/${trigger.date}/${trigger.year} | </span>
           <span class="trigger">${trigger.emotion}</span>
           <p class="ml-8 font-normal">${trigger.detail}</p>
-          <button type ="button" class="text-red-500 font-bold ml-4">Delete</button>
+          <button type ="button" class="text-red-500 font-bold ml-4 ${trigger.id}-delete">Delete</button>
         </div>
       `)
+
+      deleteEventListener(trigger.id, chart, trigger.emotion)
     }
 
     let chartData = triggers[triggers.length-1]
     chart.data.datasets[0].data = [chartData.anxCount, chartData.guiltCount, chartData.happyCount, chartData.sadCount, chartData.shameCount, chartData.otherCount]
     chart.update()
   }
+
+  function deleteEventListener(triggerId, chart, emotion){
+    if(triggerId != null){
+      document.querySelector(`.${triggerId}-delete`).addEventListener('click', async function(event){
+        event.preventDefault()
+        await fetch('/.netlify/functions/delete_trigger', {
+          method: 'POST',
+          body: JSON.stringify({
+            id: triggerId
+          })
+        })
+
+        document.querySelector(`.${triggerId}`).remove()
+        let curAnx = chart.data.datasets[0].data[0]
+        let curGuilt = chart.data.datasets[0].data[1]
+        let curHap = chart.data.datasets[0].data[2]
+        let curSad = chart.data.datasets[0].data[3]
+        let curShame = chart.data.datasets[0].data[4]
+        let curOth = chart.data.datasets[0].data[5]
+        if(emotion == "Anxious"){
+          curAnx -= 1
+        } else if(emotion == "Guilty"){
+          curGuilt -= 1
+        } else if(emotion == "Happy"){
+          curHap -= 1
+        } else if(emotion == "Sad"){
+          curSad -= 1
+        } else if(emotion == "Shame"){
+          curShame -= 1
+        } else {
+          curOth -= 1
+        }
+        chart.data.datasets[0].data = [curAnx, curGuilt, curHap, curSad, curShame, curOth]
+        chart.update()
+      })
+
+    }
+  }
+
 })
